@@ -1,7 +1,7 @@
 {
   "scripts": {
     "package": "npm run clean  && tfx extension create  --rev-version",
-    "gallery-publish": "tfx extension publish --rev-version",
+    "gallery-publish": "tfx extension publish --rev-version  --token pnz2t7657he7at4bx34x7pzlonsrsu2odb5tsaaczqqbtyvqwytq",
     "clean": "rimraf ./*.vsix",
     "compile": "tsc -p .",
     "install-task-lib": "cd GitHubTag && npm install --save-dev"

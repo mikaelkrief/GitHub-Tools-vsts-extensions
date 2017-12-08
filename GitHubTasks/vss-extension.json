@@ -1,10 +1,10 @@
 {
   "manifestVersion": 1,
   "id": "githubtag",
-  "version": "0.1.1",
+  "version": "0.1.19",
   "name": "GitHubTag",
   "scopes": [],
-  "description": "tag",
+  "description": "GitHub Tasks",
   "publisher": "DevMikaelKrief",
   "galleryFlags": [
     "Preview"
@@ -18,10 +18,9 @@
     }
   ],
   "demands": [
-    "api-version/3.0"
   ],
   "tags": [
-    "Sample"
+    "GitHub"
   ],
   "categories": [
     "Build and release"

@@ -1,31 +1,12 @@
-## GitHubTag ##
+## GitHub tools for Build and Release ##
 
-tag
+This extension provide Build/Release tasks for create GitHub tag and release.
 
-### Quick steps to get started ###
+### GitHub Create Tag ###
 
-![](/static/images/Screen1.png)
+This task create Tag to commit
 
-//TODO:Add a walk-through of key features to your extension. See [Roll-up Board](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.RollUpBoard) for an example.
 
-### Known issue(s)
-
-- None
-
-### Learn More
-
-The [source](//TODO:Point to your repo or remove this) to this extension is available. Feel free to take, fork, and extend.
-
-//TODO:Update the 3rd party notices file or remove the view notices reference.
-[View Notices](https://marketplace.visualstudio.com/_apis/public/gallery/publisher/DevMikaelKrief/extension/githubtag/latest/assetbyname/ThirdPartyNotices.txt) for third party software included in this extension.
-
-### Minimum supported environments ###
-
-- Visual Studio Team Services
-
-### Contributors ###
-
-We thank the following contributor(s) for this extension: @TODO@-Add and credit contributors.
 
 ### Feedback ###
 - Add a review below.

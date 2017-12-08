@@ -1,27 +1,52 @@
-#
-# GitHubTag.ps1
-#
-[CmdletBinding(DefaultParameterSetName = 'None')]
-param(
-	[string][Parameter(Mandatory=$true)] $variable1, 
-	[string] $variable2
-)
+Write-Host "Starting GitHub Tag task"
 
-Write-Host "Starting GitHubTag"
-
-#Run Save-Module -Name VstsTaskSdk -Path .\ for get the Powershell VSTS SDK
-# see https://github.com/Microsoft/vsts-task-lib/tree/master/powershell/Docs
-#Trace-VstsEnteringInvocation $MyInvocation
+Trace-VstsEnteringInvocation $MyInvocation
 
 try {
-Write-Host "variable 1: "$variable1
-Write-Host "variable 2: "$variable2
 
+    $serviceName = Get-VstsInput -Name githubEndpoint
+    $endpoint = Get-VstsEndpoint -Name $serviceName -Require
+   
+    Write-Host $serviceName
+    if (!$serviceName) {
+        Get-VstsInput -Name $serviceNameInput -Require
+    }
 
-} catch {
+    $tag = Get-VstsInput -Name tag -Require
+    $repositoryName = Get-VstsInput -Name repositoryName -Require
+    $commit = Get-VstsInput -Name commmit -Require
+	$token = $endpoint.Auth.Parameters.accessToken
+	
+	#"Endpoint:"
+	#$Endpoint | ConvertTo-Json -Depth 32
 
-} finally {
-	#Trace-VstsLeavingInvocation $MyInvocation
+    $releaseData = @{
+        ref = "refs/tags/$tag" ;
+        sha = "$commit";
+    }
+
+    $auth = 'token ' + $token;
+
+    $releaseParams = @{
+        Uri = "https://api.github.com/repos/$repositoryName/git/refs";
+        Method = 'POST';
+        Headers = @{
+        Authorization = $auth;
+        }
+        ContentType = 'application/json';
+        Body = (ConvertTo-Json $releaseData -Compress)
+    }
+
+    $res = Invoke-RestMethod @releaseParams
+    Write-Verbose $res | ConvertTo-Json -Depth 32
+    Write-Host "The commit $commit is taged $tag on repository $repositoryName"
+}
+catch [Exception] 
+{    
+    Write-Error ($_.Exception.Message)
+}
+finally {
+    Trace-VstsLeavingInvocation $MyInvocation
 }
 
-Write-Host "Ending GitHubTag"
+Write-Host "Ending GitHubTag task"

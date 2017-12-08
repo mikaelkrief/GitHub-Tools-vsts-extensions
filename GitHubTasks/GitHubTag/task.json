@@ -1,37 +1,61 @@
 {
-   "id": "ee9bfef8-23d5-460f-8147-9f2ed18828f4",
-   "name": "GitHubTag",
-   "friendlyName": "My Task",
-   "description": "GitHub Tag",
-   "helpMarkDown": "[More Information](https://url.to/yourmarkdown)",
-   "category": "Build",
-   "visibility": ["Build","Release"],
-   "author": "",
-   "version": {
-      "Major": 1,
-      "Minor": 0,
-      "Patch": 0
-   },
-   "demands": [],
-   "inputs": [
-      {
-         "name": "variable1",
-         "type": "filePath",
-         "label": "Path to Solution File",
-         "defaultValue": "",
-         "required": true
-      },
-      {
-         "name": "variable2",
-         "type": "string",
-         "label": "Sample text variable",
-         "defaultValue": "",
-         "required": false,
-         "helpMarkDown": "This will give you a hover-over tooltip"
-      }
-   ],
-   "instanceNameFormat": "GitHubTag",
-   "execution":
-    {"PowerShell3":{"target":"$(currentDirectory)\\GitHubTag.ps1","argumentFormat":"","workingDirectory":"$(currentDirectory)"}}
-   
+    "id": "ee9bfef8-23d5-460f-8147-9f2ed18828f4",
+    "name": "GitHubTag",
+    "friendlyName": "Create a GitHub Tag",
+    "description": "Create a GitHub Tag",
+    "helpMarkDown": "v0.0.17",
+    "category": "Build",
+    "visibility": [
+        "Build",
+        "Release"
+    ],
+    "author": "Mikael Krief",
+    "version": {
+        "Major": 0,
+        "Minor": 0,
+        "Patch": 17
+    },
+    "demands": [],
+    "inputs": [
+        {
+            "name": "githubEndpoint",
+            "type": "connectedService:github",
+            "label": "GitHub Connection",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Select the service endpoint for your GitHub connection. To create one, click the Manage link and create a new service endpoint."
+        },
+        {
+            "name": "tag",
+            "type": "string",
+            "label": "Tag",
+            "defaultValue": "v$(Build.BuildNumber)",
+            "required": true,
+            "helpMarkDown": "Tag to associate to commit."
+        },
+        {
+            "name": "repositoryName",
+            "type": "string",
+            "label": "Repository full name",
+            "defaultValue": "$(Build.Repository.Name)",
+            "required": true,
+            "helpMarkDown": "Full name of the GitHub repository e.g. name/myrepository default value $(Build.Repository.Name)"
+        },
+        {
+            "name": "commmit",
+            "type": "string",
+            "label": "Commit",
+            "defaultValue": "$(Build.SourceVersion)",
+            "required": true,
+            "helpMarkDown": "The SHA Commit id. default value $(Build.SourceVersion)"
+        }
+    ],
+    "instanceNameFormat": "GitHubTag",
+    "execution": {
+        "PowerShell3": {
+            "target": "$(currentDirectory)\\GitHubTag.ps1",
+            "argumentFormat": "",
+            "workingDirectory": "$(currentDirectory)"
+        }
+    }
 }
