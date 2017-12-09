@@ -1,10 +1,10 @@
 {
     "id": "ee9bfef8-23d5-460f-8147-9f2ed18828f4",
     "name": "GitHubTag",
-    "friendlyName": "Create a GitHub Tag",
-    "description": "Create a GitHub Tag",
-    "helpMarkDown": "v0.0.17",
-    "category": "Build",
+    "friendlyName": "Tag GitHub commit",
+    "description": "Create a Tag in GitHub commit",
+    "helpMarkDown": "Tag your GitHub commit v0.1.0 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
+    "category": "Utility",
     "visibility": [
         "Build",
         "Release"
@@ -12,8 +12,8 @@
     "author": "Mikael Krief",
     "version": {
         "Major": 0,
-        "Minor": 0,
-        "Patch": 17
+        "Minor": 1,
+        "Patch": 0
     },
     "demands": [],
     "inputs": [
@@ -23,7 +23,8 @@
             "label": "GitHub Connection",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Select the service endpoint for your GitHub connection. To create one, click the Manage link and create a new service endpoint."
+            "helpMarkDown": "Select the service endpoint for your GitHub connection. To create one, click the Manage link and create a new service endpoint.",
+            "releaseNotes": " Add first version"
         },
         {
             "name": "tag",
@@ -31,7 +32,7 @@
             "label": "Tag",
             "defaultValue": "v$(Build.BuildNumber)",
             "required": true,
-            "helpMarkDown": "Tag to associate to commit."
+            "helpMarkDown": "Tag to associate to commit, default value $(Build.BuildNumber) for tag the commit with the current build number"
         },
         {
             "name": "repositoryName",
@@ -39,7 +40,7 @@
             "label": "Repository full name",
             "defaultValue": "$(Build.Repository.Name)",
             "required": true,
-            "helpMarkDown": "Full name of the GitHub repository e.g. name/myrepository default value $(Build.Repository.Name)"
+            "helpMarkDown": "Full name of the GitHub repository e.g. name/myrepository, default value $(Build.Repository.Name)"
         },
         {
             "name": "commmit",
