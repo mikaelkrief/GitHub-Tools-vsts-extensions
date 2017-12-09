@@ -4,6 +4,7 @@
     "friendlyName": "Tag GitHub commit",
     "description": "Create a Tag in GitHub commit",
     "helpMarkDown": "Tag your GitHub commit v0.1.0 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
+    "releaseNotes": " Add first version",
     "category": "Utility",
     "visibility": [
         "Build",
@@ -23,8 +24,7 @@
             "label": "GitHub Connection",
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Select the service endpoint for your GitHub connection. To create one, click the Manage link and create a new service endpoint.",
-            "releaseNotes": " Add first version"
+            "helpMarkDown": "Select the service endpoint for your GitHub connection. To create one, click the Manage link and create a new service endpoint."
         },
         {
             "name": "tag",
