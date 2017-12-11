@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "githubtools",
-  "version": "0.1.31",
+  "version": "0.1.37",
   "name": "GitHub Tools",
   "scopes": [],
   "description": "GitHub Tools for VSTS build and Release",
@@ -57,6 +57,9 @@
       "path": "GitHubTag"
     },
     {
+      "path": "GitHubRelease"
+    },
+    {
       "path": "static",
       "addressable": true
     }
@@ -70,6 +73,16 @@
       "type": "ms.vss-distributed-task.task",
       "properties": {
         "name": "GitHubTag"
+      }
+    },
+    {
+      "id": "GitHubRelease",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "type": "ms.vss-distributed-task.task",
+      "properties": {
+        "name": "GitHubRelease"
       }
     }
   ]
