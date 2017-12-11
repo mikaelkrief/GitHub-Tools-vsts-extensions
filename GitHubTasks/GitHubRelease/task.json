@@ -3,7 +3,7 @@
     "name": "GitHubRelease",
     "friendlyName": "Create GitHub Release",
     "description": "Create a GitHub release",
-    "helpMarkDown": "Create a GitHub Release v0.0.1 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
+    "helpMarkDown": "Create a GitHub Release v0.0.5 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
     "releaseNotes": " Add first version",
     "category": "Utility",
     "visibility": [
@@ -14,7 +14,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 1
+        "Patch": 5
     },
     "demands": [],
     "inputs": [
@@ -69,7 +69,7 @@
         {
             "name": "isprerelease",
             "type": "boolean",
-            "label": "Is prerelease ?",
+            "label": "Is PreRelease ?",
             "defaultValue": "false",
             "required": true,
             "helpMarkDown": "Is prerelease"

@@ -1,4 +1,4 @@
-Write-Host "Starting GitHub Tag task"
+Write-Host "Starting GitHub Release task"
 
 Trace-VstsEnteringInvocation $MyInvocation
 
@@ -15,43 +15,47 @@ try {
     $tag = Get-VstsInput -Name tag -Require
     $repositoryName = Get-VstsInput -Name repositoryName -Require
     $commit = Get-VstsInput -Name commmit -Require
-	$token = $endpoint.Auth.Parameters.accessToken
-	$isdraft = Get-VstsInput -Name isdraft -Require
-	#"Endpoint:"
-	#$Endpoint | ConvertTo-Json -Depth 32
+    $token = $endpoint.Auth.Parameters.accessToken
+    $releaseName = Get-VstsInput -Name releaseName -Require
+    $isdraft = Get-VstsInput -Name isdraft -Require -AsBool
+    $isprerelease = Get-VstsInput -Name isprerelease -Require -AsBool
+    $releasenote = Get-VstsInput -Name releasenote -Require
+    
+    #"Endpoint:"
+    #$Endpoint | ConvertTo-Json -Depth 32
 
 
     $releaseData = @{
-        tag_name = $tag;
+        tag_name         = $tag;
         target_commitish = $commit;
-        name = [string]::Format("v{0}", $versionNumber);
-        body = $releaseNotes;
-        draft = $draft;
-        prerelease = $preRelease;
-     }
+        name             = $releaseName;
+        body             = $releasenote;
+        draft            = $isdraft;
+        prerelease       = $isprerelease;
+    }
 
-    $auth = 'token ' + $token;
+    #$auth = 'token ' + $token;
+    $auth = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($token + ":x-oauth-basic"));
 
     $releaseParams = @{
-        Uri = "https://api.github.com/repos/$repositoryName/releases";
-        Method = 'POST';
-        Headers = @{
-        Authorization = $auth;
+        Uri         = "https://api.github.com/repos/$repositoryName/releases";
+        Method      = 'POST';
+        Headers     = @{
+            Authorization = $auth;
         }
         ContentType = 'application/json';
-        Body = (ConvertTo-Json $releaseData -Compress)
+        Body        = (ConvertTo-Json $releaseData -Compress)
     }
 
     $res = Invoke-RestMethod @releaseParams
     Write-Verbose $res | ConvertTo-Json -Depth 32
     Write-Host "The release is created"
 }
-catch [Exception] 
-{    
+catch [Exception] {    
     Write-Error ($_.Exception.Message)
 }
 finally {
     Trace-VstsLeavingInvocation $MyInvocation
 }
 
-Write-Host "Ending GitHubTag task"
+Write-Host "Ending GitHubRelease task"
