@@ -3,7 +3,7 @@
     "name": "GitHubRelease",
     "friendlyName": "Create GitHub Release",
     "description": "Create a GitHub release",
-    "helpMarkDown": "Create a GitHub Release v0.0.5 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
+    "helpMarkDown": "Create a GitHub Release v0.0.7 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
     "releaseNotes": " Add first version",
     "category": "Utility",
     "visibility": [
@@ -14,7 +14,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 5
+        "Patch": 7
     },
     "demands": [],
     "inputs": [
@@ -27,14 +27,6 @@
             "helpMarkDown": "Select the service endpoint for your GitHub connection. To create one, click the Manage link and create a new service endpoint."
         },
         {
-            "name": "tag",
-            "type": "string",
-            "label": "Tag",
-            "defaultValue": "v$(Build.BuildNumber)",
-            "required": true,
-            "helpMarkDown": "Tag to associate to commit, default value $(Build.BuildNumber) for tag the commit with the current build number"
-        },
-        {
             "name": "repositoryName",
             "type": "string",
             "label": "Repository full name",
@@ -43,13 +35,22 @@
             "helpMarkDown": "Full name of the GitHub repository e.g. name/myrepository, default value $(Build.Repository.Name)"
         },
         {
-            "name": "commmit",
+            "name": "tag",
             "type": "string",
-            "label": "Commit",
-            "defaultValue": "$(Build.SourceVersion)",
+            "label": "Tag",
+            "defaultValue": "$(Build.BuildNumber)",
             "required": true,
-            "helpMarkDown": "The SHA Commit id. default value $(Build.SourceVersion)"
+            "helpMarkDown": "Tag to associate to commit, default value $(Build.BuildNumber) for tag the commit with the current build number"
         },
+        {
+            "name": "branch",
+            "type": "string",
+            "label": "Branch",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The branch to release"
+        },
+        
         {
             "name": "releaseName",
             "type": "string",
@@ -69,18 +70,18 @@
         {
             "name": "isprerelease",
             "type": "boolean",
-            "label": "Is PreRelease ?",
+            "label": "Is Pre Release ?",
             "defaultValue": "false",
             "required": true,
-            "helpMarkDown": "Is prerelease"
+            "helpMarkDown": "Is pre release"
         },
         {
             "name": "releasenote",
             "type": "multiLine",
             "label": "Release note",
-            "defaultValue": "",
+            "defaultValue": "$(build.SourceVersionMessage)",
             "required": true,
-            "helpMarkDown": "Release name",
+            "helpMarkDown": "Release name, default value $(build.SourceVersionMessage)",
             "properties": {
                 "resizable": "true",
                 "rows": "4"

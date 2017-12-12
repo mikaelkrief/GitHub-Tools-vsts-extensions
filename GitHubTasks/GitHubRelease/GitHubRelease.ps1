@@ -1,4 +1,4 @@
-Write-Host "Starting GitHub Release task"
+Write-Host "Starting GitHub Create Release task"
 
 Trace-VstsEnteringInvocation $MyInvocation
 
@@ -14,27 +14,26 @@ try {
 
     $tag = Get-VstsInput -Name tag -Require
     $repositoryName = Get-VstsInput -Name repositoryName -Require
-    $commit = Get-VstsInput -Name commmit -Require
+    $branch = Get-VstsInput -Name branch -Require
     $token = $endpoint.Auth.Parameters.accessToken
     $releaseName = Get-VstsInput -Name releaseName -Require
     $isdraft = Get-VstsInput -Name isdraft -Require -AsBool
     $isprerelease = Get-VstsInput -Name isprerelease -Require -AsBool
     $releasenote = Get-VstsInput -Name releasenote -Require
-    
+
     #"Endpoint:"
     #$Endpoint | ConvertTo-Json -Depth 32
 
 
     $releaseData = @{
         tag_name         = $tag;
-        target_commitish = $commit;
+        target_commitish = $branch;
         name             = $releaseName;
         body             = $releasenote;
         draft            = $isdraft;
         prerelease       = $isprerelease;
     }
 
-    #$auth = 'token ' + $token;
     $auth = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($token + ":x-oauth-basic"));
 
     $releaseParams = @{
@@ -58,4 +57,4 @@ finally {
     Trace-VstsLeavingInvocation $MyInvocation
 }
 
-Write-Host "Ending GitHubRelease task"
+Write-Host "Ending GitHub Create Release task"
