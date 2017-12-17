@@ -3,7 +3,7 @@
     "name": "GitHubRelease",
     "friendlyName": "Create GitHub Release",
     "description": "Create a GitHub release",
-    "helpMarkDown": "Create a GitHub Release v0.0.7 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
+    "helpMarkDown": "Create a GitHub Release v0.0.22 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
     "releaseNotes": " Add first version",
     "category": "Utility",
     "visibility": [
@@ -14,7 +14,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 7
+        "Patch": 24
     },
     "demands": [],
     "inputs": [
@@ -28,11 +28,14 @@
         },
         {
             "name": "repositoryName",
-            "type": "string",
-            "label": "Repository full name",
-            "defaultValue": "$(Build.Repository.Name)",
+            "type": "pickList",
+            "label": "Repository",
+            "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Full name of the GitHub repository e.g. name/myrepository, default value $(Build.Repository.Name)"
+            "helpMarkDown": "Full name of the GitHub repository e.g. name/myrepository, default value $(Build.Repository.Name)",
+            "properties": {
+                "DisableManageLink": "True"
+            }
         },
         {
             "name": "tag",
@@ -50,7 +53,6 @@
             "required": true,
             "helpMarkDown": "The branch to release"
         },
-        
         {
             "name": "releaseName",
             "type": "string",
@@ -88,7 +90,16 @@
             }
         }
     ],
-    "instanceNameFormat": "GitHubRelease",
+    "sourceDefinitions": [
+        {
+            "target": "repositoryName",
+            "endpoint": "/$(system.teamProject)/_apis/sourceProviders/GitHub/repositories?serviceEndpointId=$(githubEndpoint)",
+            "selector": "jsonpath:$.value[*].id",
+            "keySelector": "jsonpath:$.value[*].id",
+            "authKey": "tfs:teamfoundation"
+        }
+    ],
+    "instanceNameFormat": "Create GitHub Release",
     "execution": {
         "PowerShell3": {
             "target": "$(currentDirectory)\\GitHubRelease.ps1",

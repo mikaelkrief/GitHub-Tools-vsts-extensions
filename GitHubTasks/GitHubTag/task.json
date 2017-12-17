@@ -3,7 +3,7 @@
     "name": "GitHubTag",
     "friendlyName": "Tag GitHub commit",
     "description": "Create a Tag in GitHub commit",
-    "helpMarkDown": "Tag your GitHub commit v0.1.0 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
+    "helpMarkDown": "Tag your GitHub commit v0.1.4 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
     "releaseNotes": " Add first version",
     "category": "Utility",
     "visibility": [
@@ -14,7 +14,7 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 0
+        "Patch": 4
     },
     "demands": [],
     "inputs": [
@@ -27,20 +27,15 @@
             "helpMarkDown": "Select the service endpoint for your GitHub connection. To create one, click the Manage link and create a new service endpoint."
         },
         {
-            "name": "tag",
-            "type": "string",
-            "label": "Tag",
-            "defaultValue": "v$(Build.BuildNumber)",
-            "required": true,
-            "helpMarkDown": "Tag to associate to commit, default value $(Build.BuildNumber) for tag the commit with the current build number"
-        },
-        {
             "name": "repositoryName",
-            "type": "string",
-            "label": "Repository full name",
+            "type": "picklist",
+            "label": "Repository",
             "defaultValue": "$(Build.Repository.Name)",
             "required": true,
-            "helpMarkDown": "Full name of the GitHub repository e.g. name/myrepository, default value $(Build.Repository.Name)"
+            "helpMarkDown": "Full name of the GitHub repository e.g. name/myrepository, default value $(Build.Repository.Name)",
+            "properties": {
+                "DisableManageLink": "True"
+            }
         },
         {
             "name": "commmit",
@@ -49,9 +44,26 @@
             "defaultValue": "$(Build.SourceVersion)",
             "required": true,
             "helpMarkDown": "The SHA Commit id. default value $(Build.SourceVersion)"
+        },
+        {
+            "name": "tag",
+            "type": "string",
+            "label": "Tag",
+            "defaultValue": "v$(Build.BuildNumber)",
+            "required": true,
+            "helpMarkDown": "Tag to associate to commit, default value $(Build.BuildNumber) for tag the commit with the current build number"
         }
     ],
-    "instanceNameFormat": "GitHubTag",
+    "sourceDefinitions": [
+        {
+            "target": "repositoryName",
+            "endpoint": "/$(system.teamProject)/_apis/sourceProviders/GitHub/repositories?serviceEndpointId=$(githubEndpoint)",
+            "selector": "jsonpath:$.value[*].id",
+            "keySelector": "jsonpath:$.value[*].id",
+            "authKey": "tfs:teamfoundation"
+        }
+    ],
+    "instanceNameFormat": "Tag GitHub",
     "execution": {
         "PowerShell3": {
             "target": "$(currentDirectory)\\GitHubTag.ps1",

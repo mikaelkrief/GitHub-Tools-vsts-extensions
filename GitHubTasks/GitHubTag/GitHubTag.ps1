@@ -15,10 +15,10 @@ try {
     $tag = Get-VstsInput -Name tag -Require
     $repositoryName = Get-VstsInput -Name repositoryName -Require
     $commit = Get-VstsInput -Name commmit -Require
-	$token = $endpoint.Auth.Parameters.accessToken
+    $token = $endpoint.Auth.Parameters.accessToken
 	
-	#"Endpoint:"
-	#$Endpoint | ConvertTo-Json -Depth 32
+    #"Endpoint:"
+    #$Endpoint | ConvertTo-Json -Depth 32
 
     $releaseData = @{
         ref = "refs/tags/$tag" ;
@@ -28,25 +28,24 @@ try {
     $auth = 'token ' + $token;
 
     $releaseParams = @{
-        Uri = "https://api.github.com/repos/$repositoryName/git/refs";
-        Method = 'POST';
-        Headers = @{
-        Authorization = $auth;
+        Uri         = "https://api.github.com/repos/$repositoryName/git/refs";
+        Method      = 'POST';
+        Headers     = @{
+            Authorization = $auth;
         }
         ContentType = 'application/json';
-        Body = (ConvertTo-Json $releaseData -Compress)
+        Body        = (ConvertTo-Json $releaseData -Compress)
     }
 
     $res = Invoke-RestMethod @releaseParams
     Write-Verbose $res | ConvertTo-Json -Depth 32
     Write-Host "The commit $commit is taged $tag on repository $repositoryName"
 }
-catch [Exception] 
-{    
+catch [Exception] {    
     Write-Error ($_.Exception.Message)
 }
 finally {
     Trace-VstsLeavingInvocation $MyInvocation
 }
 
-Write-Host "Ending GitHubTag task"
+Write-Host "Ending GitHub Tag task"
