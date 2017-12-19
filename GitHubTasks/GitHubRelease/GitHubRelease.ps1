@@ -25,16 +25,25 @@ try {
     #$Endpoint | ConvertTo-Json -Depth 32
 
 
+
+    $commitParams = @{
+        Uri         = "https://api.github.com/repos/$repositoryName/git/commits/$env:BUILD_SOURCEVERSION";
+        Method      = 'GET';
+        ContentType = 'application/json';
+    }
+    $rescommit = Invoke-RestMethod @commitParams
+
     $releaseData = @{
         tag_name         = $tag;
         target_commitish = $branch;
         name             = $releaseName;
-        body             = $releasenote;
+        body             = $rescommit.message;
         draft            = $isdraft;
         prerelease       = $isprerelease;
     }
 
     $auth = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($token + ":x-oauth-basic"));
+
 
     $releaseParams = @{
         Uri         = "https://api.github.com/repos/$repositoryName/releases";
@@ -46,7 +55,13 @@ try {
         Body        = (ConvertTo-Json $releaseData -Compress)
     }
 
+
+
+
     $res = Invoke-RestMethod @releaseParams
+   
+
+    $rescommit.message
     Write-Verbose $res | ConvertTo-Json -Depth 32
     Write-Host "The release is created"
 }
