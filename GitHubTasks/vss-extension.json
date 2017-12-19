@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "githubtools",
-  "version": "0.1.67",
+  "version": "0.1.68",
   "name": "GitHub Tools",
   "scopes": [],
   "description": "GitHub Tools for VSTS build and Release",
