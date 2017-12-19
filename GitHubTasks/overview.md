@@ -28,9 +28,9 @@ The parameters of the task are:
  - indicate if it's draft release
  - indicate if it's pre release
  
-![githubtask](static/images/screen1.png)
+![githubtask](static/images/screen2.png)
 
-See the [Wiki page](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Tag-GitHub-commit) for more documentation.
+See the [Wiki page](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Create-GitHub-release) for more documentation.
 
 ### Feedback ###
 - Add a review below in Rating & Review section
