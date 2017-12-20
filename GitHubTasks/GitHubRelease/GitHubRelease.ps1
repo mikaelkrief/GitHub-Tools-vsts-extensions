@@ -20,7 +20,7 @@ try {
     $isdraft = Get-VstsInput -Name isdraft -Require -AsBool
     $isprerelease = Get-VstsInput -Name isprerelease -Require -AsBool
     $usecommitmessage = Get-VstsInput -Name usecommitmessage -Require -AsBool
-    $releasenote = Get-VstsInput -Name releasenote -Require
+    $releasenote = Get-VstsInput -Name releasenote
 
     #"Endpoint:"
     #$Endpoint | ConvertTo-Json -Depth 32
