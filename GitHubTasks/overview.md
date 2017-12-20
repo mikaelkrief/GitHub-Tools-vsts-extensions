@@ -24,7 +24,7 @@ The parameters of the task are:
  - the tag
  - the branch
  - the release name
- - the release note
+ - use the commit message or custom release note
  - indicate if it's draft release
  - indicate if it's pre release
  
