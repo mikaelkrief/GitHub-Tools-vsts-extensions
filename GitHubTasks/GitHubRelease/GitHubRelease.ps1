@@ -19,25 +19,28 @@ try {
     $releaseName = Get-VstsInput -Name releaseName -Require
     $isdraft = Get-VstsInput -Name isdraft -Require -AsBool
     $isprerelease = Get-VstsInput -Name isprerelease -Require -AsBool
+    $usecommitmessage = Get-VstsInput -Name usecommitmessage -Require -AsBool
     $releasenote = Get-VstsInput -Name releasenote -Require
 
     #"Endpoint:"
     #$Endpoint | ConvertTo-Json -Depth 32
+    $releaseNotes =$releasenote;
 
-
-
-    $commitParams = @{
-        Uri         = "https://api.github.com/repos/$repositoryName/git/commits/$env:BUILD_SOURCEVERSION";
-        Method      = 'GET';
-        ContentType = 'application/json';
+    if ($usecommitmessage -eq $true) {
+        $commitParams = @{
+            Uri         = "https://api.github.com/repos/$repositoryName/git/commits/$env:BUILD_SOURCEVERSION";
+            Method      = 'GET';
+            ContentType = 'application/json';
+        }
+        $rescommit = Invoke-RestMethod @commitParams
+        $releaseNotes = $rescommit.message;
     }
-    $rescommit = Invoke-RestMethod @commitParams
 
     $releaseData = @{
         tag_name         = $tag;
         target_commitish = $branch;
         name             = $releaseName;
-        body             = $rescommit.message;
+        body             = $releaseNotes;
         draft            = $isdraft;
         prerelease       = $isprerelease;
     }
@@ -61,7 +64,7 @@ try {
     $res = Invoke-RestMethod @releaseParams
    
 
-    $rescommit.message
+    #$rescommit.message
     Write-Verbose $res | ConvertTo-Json -Depth 32
     Write-Host "The release is created"
 }
