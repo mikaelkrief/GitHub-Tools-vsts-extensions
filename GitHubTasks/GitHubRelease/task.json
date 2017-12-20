@@ -62,12 +62,21 @@
             "helpMarkDown": "Release name"
         },
         {
+            "name": "usecommitmessage",
+            "type": "boolean",
+            "label": "Use commit message as release note",
+            "defaultValue": "true",
+            "required": true,
+            "helpMarkDown": "Use commit message as release note"
+        },
+        {
             "name": "releasenote",
             "type": "multiLine",
             "label": "Release note",
             "defaultValue": "$(build.SourceVersionMessage)",
             "required": true,
-            "helpMarkDown": "Release name, default value $(build.SourceVersionMessage)",
+            "helpMarkDown": "Release note",
+            "visibleRule": "usecommitmessage = false",
             "properties": {
                 "resizable": "true",
                 "rows": "4"
