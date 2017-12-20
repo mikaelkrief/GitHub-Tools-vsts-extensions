@@ -3,7 +3,7 @@
     "name": "GitHubRelease",
     "friendlyName": "Create GitHub Release",
     "description": "Create a GitHub release",
-    "helpMarkDown": "Create a GitHub Release v0.0.27 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
+    "helpMarkDown": "Create a GitHub Release v0.0.28 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
     "releaseNotes": " Add first version",
     "category": "Utility",
     "visibility": [
@@ -14,7 +14,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 27
+        "Patch": 28
     },
     "demands": [],
     "inputs": [
@@ -73,7 +73,7 @@
             "name": "releasenote",
             "type": "multiLine",
             "label": "Release note",
-            "defaultValue": "$(build.SourceVersionMessage)",
+            "defaultValue": "",
             "required": true,
             "helpMarkDown": "Release note",
             "visibleRule": "usecommitmessage = false",
