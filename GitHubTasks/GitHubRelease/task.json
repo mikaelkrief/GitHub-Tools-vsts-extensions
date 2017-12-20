@@ -73,7 +73,7 @@
             "name": "releasenote",
             "type": "multiLine",
             "label": "Release note",
-            "defaultValue": "$(build.SourceVersionMessage)",
+            "defaultValue": "",
             "required": true,
             "helpMarkDown": "Release note",
             "visibleRule": "usecommitmessage = false",
