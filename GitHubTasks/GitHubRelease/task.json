@@ -74,7 +74,7 @@
             "type": "multiLine",
             "label": "Release note",
             "defaultValue": "",
-            "required": true,
+            "required": false,
             "helpMarkDown": "Release note",
             "visibleRule": "usecommitmessage = false",
             "properties": {
