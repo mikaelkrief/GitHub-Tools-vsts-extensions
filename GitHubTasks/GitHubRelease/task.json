@@ -3,7 +3,7 @@
     "name": "GitHubRelease",
     "friendlyName": "Create GitHub Release",
     "description": "Create a GitHub release",
-    "helpMarkDown": "Create a GitHub Release v0.0.30 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
+    "helpMarkDown": "Create a GitHub Release v0.0.31 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions)",
     "releaseNotes": " Add first version",
     "category": "Utility",
     "visibility": [
@@ -14,7 +14,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 30
+        "Patch": 31
     },
     "demands": [],
     "inputs": [
@@ -83,6 +83,14 @@
             }
         },
         {
+            "name": "ziptoupload",
+            "type": "filePath",
+            "label": "Zip file To Upload",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "The zip file to upload as artifacts to the release."
+        },
+        {
             "name": "isdraft",
             "type": "boolean",
             "label": "Is draft release ?",
@@ -98,7 +106,6 @@
             "required": true,
             "helpMarkDown": "Is pre release"
         }
-        
     ],
     "sourceDefinitions": [
         {

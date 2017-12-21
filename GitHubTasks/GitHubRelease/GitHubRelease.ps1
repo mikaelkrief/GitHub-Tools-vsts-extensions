@@ -21,10 +21,12 @@ try {
     $isprerelease = Get-VstsInput -Name isprerelease -Require -AsBool
     $usecommitmessage = Get-VstsInput -Name usecommitmessage -Require -AsBool
     $releasenote = Get-VstsInput -Name releasenote
+    $ziptoupload = Get-VstsInput -Name ziptoupload
+
 
     #"Endpoint:"
     #$Endpoint | ConvertTo-Json -Depth 32
-    $releaseNotes =$releasenote;
+    $releaseNotes = $releasenote;
 
     if ($usecommitmessage -eq $true) {
         $commitParams = @{
@@ -63,9 +65,27 @@ try {
 
     $res = Invoke-RestMethod @releaseParams
    
+    if ($ziptoupload) {
+        $uploadUri = $res | Select-Object -ExpandProperty upload_url
+        Write-Host $uploadUri
+        $uploadUri = $uploadUri -creplace '\{\?name,label\}'  #, "?name=$artifact"
+        $uploadUri = $uploadUri + "?name=$artifact"
+        $uploadFile = $ziptoupload
 
+        $uploadParams = @{
+            Uri         = $uploadUri;
+            Method      = 'POST';
+            Headers     = @{
+                Authorization = $auth;
+            }
+            ContentType = 'application/zip';
+            InFile      = $uploadFile
+        }
+        $result = Invoke-RestMethod @uploadParams
+        Write-Host "The file $ziptoupload has uploaded to release"
+    }
     #$rescommit.message
-    Write-Verbose $res | ConvertTo-Json -Depth 32
+    #Write-Verbose $res | ConvertTo-Json -Depth 32
     Write-Host "The release is created"
 }
 catch [Exception] {    
