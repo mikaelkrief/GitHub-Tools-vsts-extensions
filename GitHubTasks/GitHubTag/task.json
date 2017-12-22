@@ -3,8 +3,8 @@
     "name": "GitHubTag",
     "friendlyName": "Tag GitHub commit",
     "description": "Create a Tag in GitHub commit",
-    "helpMarkDown": "Tag your GitHub commit v0.1.5 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Tag-GitHub-Commit)",
-    "releaseNotes": " Add first version",
+    "helpMarkDown": "Tag your GitHub commit v0.1.6 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Tag-GitHub-Commit)",
+    "releaseNotes": "Add first version",
     "category": "Utility",
     "visibility": [
         "Build",
@@ -14,7 +14,7 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 5
+        "Patch": 6
     },
     "demands": [],
     "inputs": [
@@ -32,7 +32,7 @@
             "label": "Repository",
             "defaultValue": "$(Build.Repository.Name)",
             "required": true,
-            "helpMarkDown": "Full name of the GitHub repository e.g. name/myrepository, default value $(Build.Repository.Name)",
+            "helpMarkDown": "GitHub repository",
             "properties": {
                 "DisableManageLink": "True"
             }
@@ -63,7 +63,7 @@
             "authKey": "tfs:teamfoundation"
         }
     ],
-    "instanceNameFormat": "Tag GitHub",
+    "instanceNameFormat": "Tag GitHub commit",
     "execution": {
         "PowerShell3": {
             "target": "$(currentDirectory)\\GitHubTag.ps1",
