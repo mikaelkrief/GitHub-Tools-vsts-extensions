@@ -65,7 +65,7 @@ try {
     if (!((Get-Item $ziptoupload) -is [System.IO.DirectoryInfo])) {
         $extn = [IO.Path]::GetExtension($ziptoupload)
         if ($extn -eq ".zip" ) {
-
+            $artifact = [IO.Path]::GetFileName($ziptoupload);
             $uploadUri = $res | Select-Object -ExpandProperty upload_url
             Write-Host $uploadUri
             $uploadUri = $uploadUri -creplace '\{\?name,label\}'  #, "?name=$artifact"
