@@ -30,7 +30,7 @@ Task parameters are:
  - The branch
  - The release name
  - Use the commit message or custom release note
- - select the zip file to upload as asset release
+ - Select the zip file to upload as asset release
  - Indicate if it's draft release
  - Indicate if it's pre release
  
