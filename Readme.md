@@ -6,7 +6,7 @@ This extension provide Build/Release tasks for tag GitHub commit and Create GitH
 
 This task create a Tag on GitHub commit.
 
-![githubtask](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/tree/master/GitHubTasks/static/images/screen1.png)
+![githubtask](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/blob/master/GitHubTasks/static/images/screen1.png)
 
 Task parameters are:
  - The GitHub connection provided by GitHub service end point, see [GitHub service end-point details](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/GitHub-Service-End-point)
@@ -21,7 +21,7 @@ See the [Wiki page](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/
 
 This task create a GitHub release based on tag.
 
-![githubtask](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/tree/master/GitHubTasks/static/images/screen2.png)
+![githubtask](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/blob/master/GitHubTasks/static/images/screen2.png)
 
 Task parameters are:
  - GitHub connection provided by GitHub service end point, see [GitHub service end-point details](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/GitHub-Service-End-point)
