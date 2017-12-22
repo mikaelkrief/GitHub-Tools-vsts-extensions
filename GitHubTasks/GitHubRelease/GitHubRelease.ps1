@@ -60,29 +60,32 @@ try {
         Body        = (ConvertTo-Json $releaseData -Compress)
     }
 
-
-
-
     $res = Invoke-RestMethod @releaseParams
    
-    if ($ziptoupload) {
-        $uploadUri = $res | Select-Object -ExpandProperty upload_url
-        Write-Host $uploadUri
-        $uploadUri = $uploadUri -creplace '\{\?name,label\}'  #, "?name=$artifact"
-        $uploadUri = $uploadUri + "?name=$artifact"
-        $uploadFile = $ziptoupload
+    if (!((Get-Item $ziptoupload) -is [System.IO.DirectoryInfo])) {
+        $extn = [IO.Path]::GetExtension($ziptoupload)
+        if ($extn -eq ".zip" ) {
 
-        $uploadParams = @{
-            Uri         = $uploadUri;
-            Method      = 'POST';
-            Headers     = @{
-                Authorization = $auth;
+            $uploadUri = $res | Select-Object -ExpandProperty upload_url
+            Write-Host $uploadUri
+            $uploadUri = $uploadUri -creplace '\{\?name,label\}'  #, "?name=$artifact"
+            $uploadUri = $uploadUri + "?name=$artifact"
+            $uploadFile = $ziptoupload
+
+            $uploadParams = @{
+                Uri         = $uploadUri;
+                Method      = 'POST';
+                Headers     = @{
+                    Authorization = $auth;
+                }
+                ContentType = 'application/zip';
+                InFile      = $uploadFile
             }
-            ContentType = 'application/zip';
-            InFile      = $uploadFile
+            $result = Invoke-RestMethod @uploadParams
+            Write-Host "The file $ziptoupload has uploaded to release"
+        }else{
+            Write-Error "You need to select Zip file";
         }
-        $result = Invoke-RestMethod @uploadParams
-        Write-Host "The file $ziptoupload has uploaded to release"
     }
     #$rescommit.message
     #Write-Verbose $res | ConvertTo-Json -Depth 32
