@@ -1,6 +1,6 @@
 ## GitHub tools for Build and Release ##
 
-This extension provide Build/Release tasks for tag GitHub commit and Create GitHub release.
+This Visual Studo Team Services extension provide Build/Release tasks for tag GitHub commit and Create GitHub release.
 
 ### Tag GitHub commit ###
 
