@@ -6,9 +6,7 @@
   "scopes": [],
   "description": "GitHub Tools for VSTS build and Release",
   "publisher": "DevMikaelKrief",
-  "galleryFlags": [
-    "Preview"
-  ],
+  "public": "false",
   "icons": {
     "default": "static/images/logo.png"
   },
