@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "",
   "version": "",
-  "name": "GitHub tools tasks",
+  "name": "GitHub Tools Tasks",
   "scopes": [],
   "description": "GitHub tools tasks for VSTS build and Release",
   "publisher": "",
