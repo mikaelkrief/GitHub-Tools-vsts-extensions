@@ -2,10 +2,10 @@
   "manifestVersion": 1,
   "id": "",
   "version": "",
-  "name": "GitHub Tools",
+  "name": "GitHub tools tasks",
   "scopes": [],
-  "description": "GitHub Tools for VSTS build and Release",
-  "publisher": "DevMikaelKrief",
+  "description": "GitHub tools tasks for VSTS build and Release",
+  "publisher": "",
   "public": "false",
   "icons": {
     "default": "static/images/logo.png"
