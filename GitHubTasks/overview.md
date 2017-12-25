@@ -1,10 +1,10 @@
-## GitHub tools for Build and Release ##
+## GitHub tools for VSTS Build and Release ##
 
-This VSTS extension provide Build/Release tasks for tag GitHub commit and Create GitHub release.
+This VSTS extension provide Build/Release tasks for tag GitHub source code and Create GitHub release.
 
-### Tag GitHub source code ###
+### GitHub Tag source code ###
 
-This task create a Tag on GitHub source code.
+This task create a GitHub Tag on your source code.
 
 ![githubtask](static/images/screen1.png)
 
@@ -16,7 +16,7 @@ Task parameters are:
 
 See the [Wiki page](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Tag-GitHub-source-code) for more documentation.
 
-### Create GitHub release ###
+### GitHub Create release ###
 
 This task create a GitHub release based on tag.
 
