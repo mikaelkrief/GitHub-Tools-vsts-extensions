@@ -3,7 +3,7 @@
     "name": "GitHubTag",
     "friendlyName": "Tag GitHub source code",
     "description": "Create a Tag in GitHub source code",
-    "helpMarkDown": "Tag your GitHub source code v0.2.7 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Tag-GitHub-source-code)",
+    "helpMarkDown": "Tag your GitHub source code v1.0.0 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Tag-GitHub-source-code)",
     "releaseNotes": "Add first version",
     "category": "Utility",
     "visibility": [
@@ -12,9 +12,9 @@
     ],
     "author": "Mikael Krief",
     "version": {
-        "Major": 0,
-        "Minor": 2,
-        "Patch": 7
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
     },
     "demands": [],
     "inputs": [
