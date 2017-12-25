@@ -14,8 +14,8 @@ try {
 
     $tag = Get-VstsInput -Name tag -Require
     $repositoryName = Get-VstsInput -Name repositoryName -Require
-    $commit = Get-VstsInput -Name commmit -Require
     $token = $endpoint.Auth.Parameters.accessToken
+    $commit = $env:BUILD_SOURCEVERSION
 	
     #"Endpoint:"
     #$Endpoint | ConvertTo-Json -Depth 32
@@ -39,7 +39,7 @@ try {
 
     $res = Invoke-RestMethod @releaseParams
     Write-Verbose $res | ConvertTo-Json -Depth 32
-    Write-Host "The commit $commit is taged $tag on repository $repositoryName"
+    Write-Host "The source code commit $commit is taged $tag on repository $repositoryName"
 }
 catch [Exception] {    
     Write-Error ($_.Exception.Message)
