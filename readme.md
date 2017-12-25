@@ -1,21 +1,20 @@
 ## GitHub tools for Build and Release ##
 
-This Visual Studo Team Services extension provide Build/Release tasks for tag GitHub commit and Create GitHub release.
+This Visual Studo Team Services extension provide Build/Release tasks for GitHub Tag on your source code and Create GitHub release.
 
-### Tag GitHub commit ###
+### GitHub Tag source code ###
 
-This task create a Tag on GitHub commit.
+This task create a Tag on GitHub source code.
 
 ![githubtask](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/blob/master/GitHubTasks/static/images/Screen1.png)
 
 Task parameters are:
  - The GitHub connection provided by GitHub service end point, see [GitHub service end-point details](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/GitHub-Service-End-point)
  - The repository
- - The Commit SHA id
  - The Tag value
  
 
-See the [Wiki page](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Tag-GitHub-commit) for more documentation.
+See the [Wiki page](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Tag-GitHub-source-code) for more documentation.
 
 ### Create GitHub release ###
 
