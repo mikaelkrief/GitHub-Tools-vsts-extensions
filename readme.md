@@ -1,4 +1,4 @@
-## GitHub tools for Build and Release ##
+## VSTS extension with GitHub tools for VSTS Build and Release ##
 
 This Visual Studo Team Services extension provide Build/Release tasks for GitHub Tag on your source code and Create GitHub release.
 
