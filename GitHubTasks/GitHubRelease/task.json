@@ -83,12 +83,12 @@
             }
         },
         {
-            "name": "ziptoupload",
+            "name": "filetoupload",
             "type": "filePath",
-            "label": "Zip file to upload as asset",
+            "label": "File to upload as asset",
             "defaultValue": "",
             "required": false,
-            "helpMarkDown": "The zip file to upload as artifacts to the release."
+            "helpMarkDown": "The file to upload as artifacts to the release."
         },
         {
             "name": "isdraft",
