@@ -1,7 +1,7 @@
 Write-Host "Starting GitHub Tag task"
 
 Trace-VstsEnteringInvocation $MyInvocation
-
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 try {
 
     $serviceName = Get-VstsInput -Name githubEndpoint
