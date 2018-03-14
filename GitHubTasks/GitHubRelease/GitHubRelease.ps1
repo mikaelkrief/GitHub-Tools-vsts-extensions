@@ -24,7 +24,7 @@ try {
     $isprerelease = Get-VstsInput -Name isprerelease -Require -AsBool
     $usecommitmessage = Get-VstsInput -Name usecommitmessage -Require -AsBool
     $releasenote = Get-VstsInput -Name releasenote
-    $filetoupload = Get-VstsInput -Name filetoupload
+    $filetoupload = Get-VstsInput -Name ziptoupload
 
 
     #"Endpoint:"
