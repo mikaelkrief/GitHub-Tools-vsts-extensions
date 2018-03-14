@@ -30,12 +30,16 @@ try {
     #"Endpoint:"
     #$Endpoint | ConvertTo-Json -Depth 32
     $releaseNotes = $releasenote;
+    $auth = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($token + ":x-oauth-basic"));
 
     if ($usecommitmessage -eq $true) {
         $commitParams = @{
             Uri         = "https://api.github.com/repos/$repositoryName/git/commits/$env:BUILD_SOURCEVERSION";
             Method      = 'GET';
             ContentType = 'application/json';
+            Headers     = @{
+                Authorization = $auth;
+            }
         }
         $rescommit = Invoke-RestMethod @commitParams
         $releaseNotes = $rescommit.message;
@@ -49,9 +53,6 @@ try {
         draft            = $isdraft;
         prerelease       = $isprerelease;
     }
-
-    $auth = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($token + ":x-oauth-basic"));
-
 
     $releaseParams = @{
         Uri         = "https://api.github.com/repos/$repositoryName/releases";
