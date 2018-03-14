@@ -4,6 +4,9 @@ Trace-VstsEnteringInvocation $MyInvocation
 
 try {
 
+    # Import the helpers.
+    . $PSScriptRoot\Get-MimeType.ps1
+
     $serviceName = Get-VstsInput -Name githubEndpoint
     $endpoint = Get-VstsEndpoint -Name $serviceName -Require
    
@@ -21,7 +24,7 @@ try {
     $isprerelease = Get-VstsInput -Name isprerelease -Require -AsBool
     $usecommitmessage = Get-VstsInput -Name usecommitmessage -Require -AsBool
     $releasenote = Get-VstsInput -Name releasenote
-    $ziptoupload = Get-VstsInput -Name ziptoupload
+    $filetoupload = Get-VstsInput -Name filetoupload
 
 
     #"Endpoint:"
@@ -62,15 +65,15 @@ try {
 
     $res = Invoke-RestMethod @releaseParams
    
-    if (!((Get-Item $ziptoupload) -is [System.IO.DirectoryInfo])) {
-        $extn = [IO.Path]::GetExtension($ziptoupload)
-        if ($extn -eq ".zip" ) {
-            $artifact = [IO.Path]::GetFileName($ziptoupload);
+    if (!((Get-Item $filetoupload) -is [System.IO.DirectoryInfo])) {
+        $mimetype = Get-MimeType -CheckFile $filetoupload | Out-String
+        if ($mimetype) { # need to validate the $mimetype
+            $artifact = [IO.Path]::GetFileName($filetoupload);
             $uploadUri = $res | Select-Object -ExpandProperty upload_url
             Write-Host $uploadUri
             $uploadUri = $uploadUri -creplace '\{\?name,label\}'  #, "?name=$artifact"
             $uploadUri = $uploadUri + "?name=$artifact"
-            $uploadFile = $ziptoupload
+            $uploadFile = $filetoupload
 
             $uploadParams = @{
                 Uri         = $uploadUri;
@@ -78,13 +81,13 @@ try {
                 Headers     = @{
                     Authorization = $auth;
                 }
-                ContentType = 'application/zip';
+                ContentType = $mimetype;
                 InFile      = $uploadFile
             }
             $result = Invoke-RestMethod @uploadParams
-            Write-Host "The file $ziptoupload has uploaded to release"
+            Write-Host "The file $filetoupload has uploaded to release"
         }else{
-            Write-Error "You need to select Zip file";
+            Write-Error "You need to select an acceptable file: https://www.iana.org/assignments/media-types/media-types.xhtml";
         }
     }
     #$rescommit.message
