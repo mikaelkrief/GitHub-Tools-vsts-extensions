@@ -3,7 +3,7 @@
     "name": "GitHubRelease",
     "friendlyName": "Create GitHub Release",
     "description": "Create a GitHub release",
-    "helpMarkDown": "Create a GitHub Release v1.0.0 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Create-GitHub-release)",
+    "helpMarkDown": "Create a GitHub Release v1.1.0 [More Information](https://github.com/mikaelkrief/GitHub-Tools-vsts-extensions/wiki/Create-GitHub-release)",
     "releaseNotes": "Add first version",
     "category": "Utility",
     "visibility": [
@@ -13,7 +13,7 @@
     "author": "Mikael Krief",
     "version": {
         "Major": 1,
-        "Minor": 0,
+        "Minor": 1,
         "Patch": 0
     },
     "demands": [],
